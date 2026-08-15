@@ -448,9 +448,9 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+    <main className="mx-auto max-w-7xl px-4 sm:px-5 py-8 sm:py-12 lg:px-8">
       {/* Header Banner Card */}
-      <div className="rounded-[1.5rem] sm:rounded-[2rem] bg-secondary border border-border/30 p-6 sm:p-8 md:p-10 relative overflow-hidden mb-8 shadow-md">
+      <div className="rounded-[1.5rem] sm:rounded-[2rem] bg-secondary border border-border/30 p-4 sm:p-8 md:p-10 relative overflow-hidden mb-6 sm:mb-8 shadow-md">
         <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 opacity-[0.03] pointer-events-none">
           <Image src="/logo.svg" alt="watermark" width={200} height={200} />
         </div>
@@ -482,16 +482,16 @@ export default function AdminPage() {
       </div>
 
       {/* Analytics Dashboard Panel */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-        <div className="rounded-3xl border border-border/30 bg-card p-6 shadow-sm flex flex-col justify-between">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6 sm:mb-8">
+        <div className="rounded-3xl border border-border/30 bg-card p-4 sm:p-6 shadow-sm flex flex-col justify-between">
           <span className="text-xs font-bold text-primary/60 uppercase tracking-wider">Total Orders</span>
           <span className="text-3xl font-black text-primary mt-2">{totalOrders}</span>
         </div>
-        <div className="rounded-3xl border border-border/30 bg-card p-6 shadow-sm flex flex-col justify-between">
+        <div className="rounded-3xl border border-border/30 bg-card p-4 sm:p-6 shadow-sm flex flex-col justify-between">
           <span className="text-xs font-bold text-primary/60 uppercase tracking-wider">Total Revenue</span>
           <span className="text-3xl font-black text-border mt-2">{money(totalSales)}</span>
         </div>
-        <div className="rounded-3xl border border-border/30 bg-card p-6 shadow-sm flex flex-col justify-between sm:col-span-2">
+        <div className="rounded-3xl border border-border/30 bg-card p-4 sm:p-6 shadow-sm flex flex-col justify-between sm:col-span-2">
           <span className="text-xs font-bold text-primary/60 uppercase tracking-wider">Database Status</span>
           <span className="text-sm font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 mt-2 self-start inline-flex items-center gap-1.5">
             ● Connected to Neon DB
@@ -500,41 +500,43 @@ export default function AdminPage() {
       </div>
 
       {/* Action Buttons Bar */}
-      <div className="flex flex-wrap gap-4 mb-8">
-        <button
-          onClick={() => { resetForm(); setIsDelicacyModalOpen(true); }}
-          className="flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:scale-105 transition-all shadow-md"
-        >
-          <Plus className="size-4" /> Add Delicacy
-        </button>
-        <button
-          onClick={() => setIsCategoryModalOpen(true)}
-          className="flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-primary hover:bg-secondary hover:text-white transition-all shadow-sm"
-        >
-          <Folder className="size-4" /> Manage Categories
-        </button>
-        <button
-          onClick={() => { setProfileError(''); setProfileSuccess(''); setIsProfileModalOpen(true); }}
-          className="flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-primary hover:bg-secondary hover:text-white transition-all shadow-sm"
-        >
-          <User className="size-4" /> Profile Settings
-        </button>
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+          <button
+            onClick={() => { resetForm(); setIsDelicacyModalOpen(true); }}
+            className="flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:scale-[1.02] transition-all shadow-md w-full sm:w-auto"
+          >
+            <Plus className="size-4" /> Add Delicacy
+          </button>
+          <button
+            onClick={() => setIsCategoryModalOpen(true)}
+            className="flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-primary hover:bg-secondary hover:text-white transition-all shadow-sm w-full sm:w-auto"
+          >
+            <Folder className="size-4" /> Manage Categories
+          </button>
+          <button
+            onClick={() => { setProfileError(''); setProfileSuccess(''); setIsProfileModalOpen(true); }}
+            className="flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-primary hover:bg-secondary hover:text-white transition-all shadow-sm w-full sm:w-auto"
+          >
+            <User className="size-4" /> Profile Settings
+          </button>
+        </div>
         <button
           onClick={() => { fetchMenu(); fetchCategories(); fetchOrders() }}
-          className="flex items-center gap-1.5 rounded-full border border-border/40 bg-card px-5 py-3 text-sm font-bold text-primary/70 hover:text-primary transition-all ml-auto"
+          className="flex items-center justify-center gap-1.5 rounded-full border border-border/40 bg-card px-5 py-3 text-sm font-bold text-primary/70 hover:text-primary transition-all w-full lg:w-auto"
         >
-          <RotateCcw className="size-3.5" /> Refresh
+          <RotateCcw className="size-3.5" /> Refresh Dashboard
         </button>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-1">
         {/* Delicacies List */}
-        <div className="rounded-3xl border border-border/30 bg-card p-6 md:p-8 shadow-sm space-y-6">
+        <div className="rounded-3xl border border-border/30 bg-card p-4 sm:p-6 md:p-8 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/20 pb-4">
-            <h2 className="font-serif text-2xl font-bold text-primary">Store Delicacies</h2>
+            <h2 className="font-serif text-xl sm:text-2xl font-bold text-primary">Store Delicacies</h2>
             
             {/* Search Input */}
-            <div className="relative w-full max-w-xs">
+            <div className="relative w-full sm:max-w-xs">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary/40 size-4" />
               <input
                 type="text"
@@ -555,36 +557,36 @@ export default function AdminPage() {
               No delicacies matching your filter.
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {filteredItems.map((item) => (
                 <div key={item.id} className="group relative flex flex-col justify-between rounded-2xl border border-border/30 bg-background/50 p-4 shadow-sm hover:shadow-md hover:border-border/60 transition-all">
-                  <div className="space-y-3">
-                    <div className="relative h-40 w-full overflow-hidden rounded-xl border border-border/20 bg-background">
-                      <Image src={item.image} alt={item.name} fill className="object-cover transition duration-300 group-hover:scale-102" />
+                  <div className="space-y-3 w-full">
+                    <div className="relative h-36 sm:h-40 w-full overflow-hidden rounded-xl border border-border/20 bg-background">
+                      <Image src={item.image} alt={item.name} fill className="object-cover transition duration-300 group-hover:scale-[1.02]" />
                     </div>
                     <div>
                       <span className="text-[10px] font-bold text-secondary uppercase tracking-wider">{item.category}</span>
-                      <h3 className="font-serif text-base font-bold text-primary leading-tight mt-0.5">{item.name}</h3>
+                      <h3 className="font-serif text-sm sm:text-base font-bold text-primary leading-tight mt-0.5">{item.name}</h3>
                       <p className="text-xs text-primary/70 line-clamp-2 mt-1">{item.description}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-border/20 pt-3 mt-4">
-                    <span className="text-sm font-bold text-border">{money(item.price)}</span>
+                  <div className="flex items-center justify-between border-t border-border/20 pt-3 mt-4 w-full">
+                    <span className="text-xs sm:text-sm font-bold text-border">{money(item.price)}</span>
                     <div className="flex gap-1.5">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="flex size-8 items-center justify-center rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all"
+                        className="flex size-7 sm:size-8 items-center justify-center rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all"
                         title="Edit Item"
                       >
-                        <Edit2 className="size-3.5" />
+                        <Edit2 className="size-3 sm:size-3.5" />
                       </button>
                       <button
                         onClick={() => handleDelete(item.id)}
-                        className="flex size-8 items-center justify-center rounded-full border border-red-200/50 hover:bg-red-500 text-primary hover:text-white transition-all"
+                        className="flex size-7 sm:size-8 items-center justify-center rounded-full border border-red-200/50 hover:bg-red-500 text-primary hover:text-white transition-all"
                         title="Delete Item"
                       >
-                        <Trash2 className="size-3.5" />
+                        <Trash2 className="size-3 sm:size-3.5" />
                       </button>
                     </div>
                   </div>
@@ -596,10 +598,44 @@ export default function AdminPage() {
 
         {/* Recent Orders Section */}
         {orders.length > 0 && (
-          <div className="rounded-3xl border border-border/30 bg-card p-6 md:p-8 shadow-sm space-y-6">
-            <h2 className="font-serif text-2xl font-bold text-primary border-b border-border/20 pb-4">Recent Store Orders</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
+          <div className="rounded-3xl border border-border/30 bg-card p-4 sm:p-6 md:p-8 shadow-sm space-y-6">
+            <h2 className="font-serif text-xl sm:text-2xl font-bold text-primary border-b border-border/20 pb-4">Recent Store Orders</h2>
+            {/* Mobile Order Cards (shown only on mobile/tablet) */}
+            <div className="space-y-4 md:hidden">
+              {orders.map((order) => (
+                <div key={order.id} className="rounded-2xl border border-border/20 bg-background/50 p-3.5 sm:p-4 space-y-3 shadow-sm">
+                  <div className="flex items-center justify-between border-b border-border/10 pb-2">
+                    <span className="font-mono font-bold text-border text-xs">{order.id}</span>
+                    <span className="text-[11px] text-primary/60">{new Date(order.created_at).toLocaleDateString()}</span>
+                  </div>
+                  <div className="flex justify-between items-start gap-4">
+                    <div>
+                      <div className="font-bold text-sm text-primary">{order.name}</div>
+                      <div className="text-xs text-primary/70 mt-1">{order.phone}</div>
+                      <div className="text-xs text-primary/50">{order.email}</div>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-black text-primary text-sm block">{money(order.total)}</span>
+                      <span className={`inline-block px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider mt-1.5 ${
+                        order.method === 'delivery' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-blue-50 text-blue-700 border border-blue-200'
+                      }`}>
+                        {order.method}
+                      </span>
+                    </div>
+                  </div>
+                  {order.notes && (
+                    <div className="text-[11px] text-primary/60 bg-secondary/5 rounded-lg p-2.5 italic">
+                      <span className="font-semibold not-italic text-[10px] text-primary/50 uppercase block mb-0.5">Order Notes</span>
+                      {order.notes}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Order Table (hidden on mobile/tablet) */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-left text-sm min-w-[700px]">
                 <thead>
                   <tr className="border-b border-border/20 text-primary/60 text-xs uppercase font-bold">
                     <th className="pb-3">Ref Code</th>
@@ -643,28 +679,28 @@ export default function AdminPage() {
       {/* MODAL 1: Add/Edit Delicacy */}
       {isDelicacyModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
-          <div className="bg-card border border-border/30 rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto relative animate-fade-in">
-            <button
-              onClick={() => setIsDelicacyModalOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all"
-            >
-              <X className="size-4" />
-            </button>
-            
-            <h2 className="font-serif text-2xl font-bold text-primary border-b border-border/20 pb-4 mb-6">
-              {editingId ? 'Edit Delicacy' : 'Add New Delicacy'}
-            </h2>
+          <div className="bg-card border border-border/30 rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-lg w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto relative animate-fade-in">
+            <div className="flex justify-between items-center border-b border-border/20 pb-4 mb-6">
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-primary">
+                {editingId ? 'Edit Delicacy' : 'Add New Delicacy'}
+              </h2>
+              <button
+                onClick={() => setIsDelicacyModalOpen(false)}
+                className="p-2 rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all shrink-0"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-primary uppercase tracking-wider mb-1">Item ID / Slug (Unique)</label>
+                <label className="block text-xs font-bold text-primary uppercase tracking-wider mb-1">Item ID / Slug (Auto-generated)</label>
                 <input
                   required
                   type="text"
-                  disabled={!!editingId}
-                  placeholder="e.g. jollof-chicken"
+                  disabled
+                  placeholder="Will generate from name..."
                   value={id}
-                  onChange={(e) => setId(e.target.value.toLowerCase().replace(/\s+/g, '-'))}
                   className="w-full rounded-xl border border-border/40 bg-background px-4 py-2.5 text-sm focus:outline-none focus:border-border text-primary font-medium disabled:opacity-50"
                 />
               </div>
@@ -676,7 +712,12 @@ export default function AdminPage() {
                   type="text"
                   placeholder="e.g. Party Fried Rice"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value)
+                    if (!editingId) {
+                      setId(e.target.value.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-'))
+                    }
+                  }}
                   className="w-full rounded-xl border border-border/40 bg-background px-4 py-2.5 text-sm focus:outline-none focus:border-border text-primary font-medium"
                 />
               </div>
@@ -788,17 +829,18 @@ export default function AdminPage() {
       {/* MODAL 2: Manage Categories */}
       {isCategoryModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
-          <div className="bg-card border border-border/30 rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-md w-full max-h-[80vh] overflow-y-auto relative animate-fade-in">
-            <button
-              onClick={() => setIsCategoryModalOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all"
-            >
-              <X className="size-4" />
-            </button>
-            
-            <h2 className="font-serif text-2xl font-bold text-primary border-b border-border/20 pb-4 mb-6">
-              Manage Categories
-            </h2>
+          <div className="bg-card border border-border/30 rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-md w-full max-h-[85vh] sm:max-h-[80vh] overflow-y-auto relative animate-fade-in">
+            <div className="flex justify-between items-center border-b border-border/20 pb-4 mb-6">
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-primary">
+                Manage Categories
+              </h2>
+              <button
+                onClick={() => setIsCategoryModalOpen(false)}
+                className="p-2 rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all shrink-0"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
             
             <form onSubmit={handleAddCategory} className="flex gap-2 mb-6">
               <input
@@ -837,17 +879,18 @@ export default function AdminPage() {
       {/* MODAL 3: Profile Settings (Change Password) */}
       {isProfileModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4">
-          <div className="bg-card border border-border/30 rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-md w-full max-h-[85vh] overflow-y-auto relative animate-fade-in">
-            <button
-              onClick={() => setIsProfileModalOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all"
-            >
-              <X className="size-4" />
-            </button>
-            
-            <h2 className="font-serif text-2xl font-bold text-primary border-b border-border/20 pb-4 mb-6">
-              Profile Settings
-            </h2>
+          <div className="bg-card border border-border/30 rounded-[2rem] shadow-2xl p-6 sm:p-8 max-w-md w-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto relative animate-fade-in">
+            <div className="flex justify-between items-center border-b border-border/20 pb-4 mb-6">
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-primary">
+                Profile Settings
+              </h2>
+              <button
+                onClick={() => setIsProfileModalOpen(false)}
+                className="p-2 rounded-full border border-border/40 hover:bg-secondary text-primary hover:text-white transition-all shrink-0"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
 
             <div className="space-y-6">
               {/* Account details */}

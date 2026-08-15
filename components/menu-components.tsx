@@ -75,25 +75,79 @@ export function MenuCard({ item }: { item: (typeof menuItems)[number] }) {
   )
 }
 
+export function MenuCardSkeleton() {
+  return (
+    <div className="flex flex-col overflow-hidden rounded-[1.5rem] border border-border/20 bg-card/60 shadow-sm animate-pulse">
+      <div className="relative aspect-[4/3] bg-primary/5 border-b border-border/10" />
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="h-6 w-2/3 rounded-md bg-primary/10" />
+          <div className="h-6 w-16 rounded-md bg-primary/10" />
+        </div>
+        <div className="flex-1 space-y-2 py-1">
+          <div className="h-4 rounded bg-primary/10 w-full" />
+          <div className="h-4 rounded bg-primary/10 w-5/6" />
+          <div className="h-4 rounded bg-primary/10 w-2/3" />
+        </div>
+        <div className="pt-2">
+          <div className="h-10 w-28 rounded-full bg-primary/10" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function MenuGrid() {
   const [items, setItems] = useState<any[]>([])
   const [cats, setCats] = useState<string[]>(['All'])
   const [category, setCategory] = useState('All')
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const checkSyncStatus = () => {
+      const syncStatus = (window as any).__menuSyncStatus
+      if (syncStatus === 'success' || syncStatus === 'error') {
+        setLoading(false)
+      } else if (syncStatus === 'loading') {
+        setLoading(true)
+      } else {
+        // Fallback: if sync hasn't started/status is not set, check if we already have local menu items
+        const stored = window.localStorage.getItem('marudeni-menu')
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored)
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setLoading(false)
+              return
+            }
+          } catch (e) {}
+        }
+        setLoading(true)
+      }
+    }
+
     setItems(getStoredMenu())
     setCats(['All', ...getStoredCategories()])
+    checkSyncStatus()
 
-    const update = () => setItems(getStoredMenu())
+    const update = () => {
+      setItems(getStoredMenu())
+      checkSyncStatus()
+    }
     const updateCats = () => setCats(['All', ...getStoredCategories()])
+    const handleSyncStatus = () => {
+      checkSyncStatus()
+    }
 
     window.addEventListener('menu-updated', update)
     window.addEventListener('categories-updated', updateCats)
+    window.addEventListener('menu-sync-status-change', handleSyncStatus)
 
     return () => {
       window.removeEventListener('menu-updated', update)
       window.removeEventListener('categories-updated', updateCats)
+      window.removeEventListener('menu-sync-status-change', handleSyncStatus)
     }
   }, [])
 
@@ -136,7 +190,13 @@ export function MenuGrid() {
         ))}
       </div>
 
-      {visible.length === 0 ? (
+      {loading ? (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, i) => (
+            <MenuCardSkeleton key={i} />
+          ))}
+        </div>
+      ) : visible.length === 0 ? (
         <div className="text-center py-12 rounded-3xl border-2 border-dashed border-border/30">
           <p className="font-serif text-xl font-bold text-primary">No delicacies found</p>
           <p className="text-sm text-primary/70 mt-1">Try resetting your search filters.</p>

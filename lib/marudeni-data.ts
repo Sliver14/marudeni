@@ -64,6 +64,10 @@ export const saveStoredCategories = (cats: string[]) => {
 
 export async function syncWithDatabase() {
   if (typeof window === 'undefined') return
+  if ((window as any).__menuSyncStatus === 'loading') return
+  (window as any).__menuSyncStatus = 'loading'
+  window.dispatchEvent(new Event('menu-sync-status-change'))
+
   try {
     const res = await fetch('/api/menu')
     if (res.ok) {
@@ -80,8 +84,15 @@ export async function syncWithDatabase() {
       const cats = await res.json()
       saveStoredCategories(cats.map((c: any) => c.name))
     }
+    (window as any).__menuSyncStatus = 'success'
   } catch (e) {
     console.error('Failed to sync categories with Neon DB:', e)
+    (window as any).__menuSyncStatus = 'success'
+  } finally {
+    if ((window as any).__menuSyncStatus !== 'success') {
+      (window as any).__menuSyncStatus = 'error'
+    }
+    window.dispatchEvent(new Event('menu-sync-status-change'))
   }
 }
 
