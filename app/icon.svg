@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gold Gradient definition -->
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C99A3D" />
+      <stop offset="50%" stop-color="#E2C076" />
+      <stop offset="100%" stop-color="#A3772C" />
+    </linearGradient>
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#173B2A" />
+      <stop offset="100%" stop-color="#0B2117" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Gold Sweep (Incomplete Circle) -->
+  <path d="M 230 70 A 180 180 0 1 0 350 140" fill="none" stroke="url(#gold-grad)" stroke-width="12" stroke-linecap="round" />
+  
+  <!-- Center elements: stylized M, leaves, cloche -->
+  <g transform="translate(10, 0)">
+    <!-- Serving Cloche (Dome) -->
+    <path d="M 220 180 C 220 140, 290 140, 290 180 Z" fill="url(#gold-grad)" />
+    <rect x="216" y="180" width="78" height="6" rx="3" fill="url(#gold-grad)" />
+    <circle cx="255" cy="136" r="6" fill="url(#gold-grad)" />
+    
+    <!-- Steam lines rising from cloche -->
+    <path d="M 245 120 Q 250 110, 245 100" fill="none" stroke="url(#gold-grad)" stroke-width="4" stroke-linecap="round" />
+    <path d="M 260 123 Q 265 113, 260 103" fill="none" stroke="url(#gold-grad)" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Stylized M -->
+    <!-- Left curved leg of M -->
+    <path d="M 170 270 Q 210 270, 240 200" fill="none" stroke="url(#gold-grad)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Diagonal right drop & leg -->
+    <path d="M 240 200 L 290 270 L 330 160" fill="none" stroke="url(#gold-grad)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Vertical right post -->
+    <path d="M 330 160 L 330 270" fill="none" stroke="url(#gold-grad)" stroke-width="14" stroke-linecap="round" />
+    <!-- Serif feet -->
+    <line x1="155" y1="270" x2="185" y2="270" stroke="url(#gold-grad)" stroke-width="8" stroke-linecap="round" />
+    <line x1="315" y1="270" x2="345" y2="270" stroke="url(#gold-grad)" stroke-width="8" stroke-linecap="round" />
+    
+    <!-- Leaves sprouting from top left of M -->
+    <g transform="translate(195, 140)">
+      <!-- Main Leaf 1 -->
+      <path d="M 0 50 C -25 25, -25 -5, 0 -25 C 25 -5, 25 25, 0 50 Z" fill="#173B2A" stroke="url(#gold-grad)" stroke-width="4" />
+      <path d="M 0 50 L 0 -15" fill="none" stroke="url(#gold-grad)" stroke-width="3" />
+      
+      <!-- Leaf 2 -->
+      <g transform="rotate(35) translate(15, -10) scale(0.7)">
+        <path d="M 0 50 C -25 25, -25 -5, 0 -25 C 25 -5, 25 25, 0 50 Z" fill="#173B2A" stroke="url(#gold-grad)" stroke-width="4" />
+        <path d="M 0 50 L 0 -15" fill="none" stroke="url(#gold-grad)" stroke-width="3" />
+      </g>
+    </g>
+  </g>
+  
+  <!-- Branding Text -->
+  <text x="250" y="360" text-anchor="middle" font-family="'DM Serif Display', 'Playfair Display', 'Georgia', serif" font-size="44" font-weight="bold" fill="#0B2117" letter-spacing="4">MARUDENI</text>
+  <text x="250" y="405" text-anchor="middle" font-family="'Inter', 'Outfit', 'sans-serif'" font-size="28" font-weight="600" fill="#C99A3D" letter-spacing="8">FOODS</text>
+  
+  <!-- Tiny decorative flower accent -->
+  <g transform="translate(250, 428) scale(0.6)">
+    <path d="M 0 0 C -15 -15, -15 -35, 0 -45 C 15 -35, 15 -15, 0 0 Z" fill="url(#gold-grad)" />
+    <path d="M 0 0 C -20 -5, -35 -20, -40 -35 C -25 -35, -10 -20, 0 0 Z" fill="url(#gold-grad)" />
+    <path d="M 0 0 C 20 -5, 35 -20, 40 -35 C 25 -35, 10 -20, 0 0 Z" fill="url(#gold-grad)" />
+  </g>
+  
+  <!-- Tagline text -->
+  <text x="250" y="475" text-anchor="middle" font-family="'Inter', 'Outfit', 'sans-serif'" font-size="13" font-weight="500" fill="#666" letter-spacing="1.5">PREMIUM DELICACIES. EXCEPTIONAL EXPERIENCE.</text>
+</svg>
