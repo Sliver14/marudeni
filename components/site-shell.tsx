@@ -184,7 +184,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      <footer className="hidden lg:block border-t border-border/20 bg-secondary py-12 text-white">
+      <footer className="border-t border-border/20 bg-secondary py-12 text-white pb-32 lg:pb-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <Link href="/" className="flex items-center gap-3 font-serif text-3xl font-bold text-white">
@@ -223,9 +223,45 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
 
-          <div className="text-right lg:text-left">
+          <div className="flex flex-col gap-3 lg:items-end text-left lg:text-right">
+            <div className="flex gap-4 lg:justify-end">
+              <a
+                href="https://www.facebook.com/marudenifoods"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-border hover:scale-110 transition-all duration-300"
+                aria-label="Facebook"
+              >
+                <svg className="size-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/marudenifoods"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-border hover:scale-110 transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <svg className="size-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="https://www.tiktok.com/@marudeni.foods"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-border hover:scale-110 transition-all duration-300"
+                aria-label="TikTok"
+              >
+                <svg className="size-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.86.99 2.07 1.68 3.39 1.95v3.91c-1.42-.01-2.81-.46-4.01-1.25-.26-.17-.5-.36-.73-.56-.03 2.92.01 5.84-.02 8.76-.08 1.4-.49 2.81-1.34 3.92-1.2 1.61-3.21 2.61-5.26 2.51-2.22-.05-4.42-1.34-5.32-3.37-1.12-2.38-.41-5.4 1.63-7.03 1.29-.98 2.94-1.38 4.54-1.13v3.98c-.89-.25-1.89-.04-2.58.58-.69.64-.94 1.65-.67 2.54.29.89 1.15 1.56 2.1 1.56 1.48.06 2.76-1.04 2.89-2.51.08-3.05.02-6.1.04-9.15.01-4.28-.02-8.56.03-12.84z" />
+                </svg>
+              </a>
+            </div>
             <p className="text-xs text-white/50">© 2026 Marudeni Foods. Premium experience.</p>
-            <p className="mt-1 text-xs text-border font-semibold">Instagram: @marudenifoods</p>
           </div>
         </div>
       </footer>
