@@ -184,7 +184,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      <footer className="border-t border-border/20 bg-secondary py-12 text-white pb-32 lg:pb-12">
+      <footer className="hidden lg:block border-t border-border/20 bg-secondary py-12 text-white lg:pb-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <Link href="/" className="flex items-center gap-3 font-serif text-3xl font-bold text-white">
