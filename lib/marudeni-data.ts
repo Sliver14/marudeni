@@ -16,6 +16,8 @@ export const menuItems: MenuItem[] = [
   { id: 'obeata', name: 'Obe Ata (Pepper / Chili Sauce)', category: 'Sides & Small Plates', description: 'A side container of our signature fiery, slow-cooked red pepper and onion stew base, simmered in palm oil with Nigerian spices.', price: 3000, image: '/menu/da43223cb72a916ab5bfb132d10c5e8b.png', tags: ['Spicy'] },
 ]
 
+export const defaultCategories = ['Rice Dishes', 'Soups & Stews', 'Sides & Small Plates', 'Sweet Things']
+
 export const getStoredMenu = (): MenuItem[] => {
   if (typeof window === 'undefined') return menuItems
   const stored = window.localStorage.getItem('marudeni-menu')
@@ -25,17 +27,8 @@ export const getStoredMenu = (): MenuItem[] => {
   }
   try {
     const parsed = JSON.parse(stored)
-    const needsSync = !Array.isArray(parsed) ||
-      parsed.length !== menuItems.length ||
-      parsed.some((item, index) => item.id !== menuItems[index].id || item.image !== menuItems[index].image)
-
-    if (needsSync) {
-      window.localStorage.setItem('marudeni-menu', JSON.stringify(menuItems))
-      return menuItems
-    }
-    return parsed
+    return Array.isArray(parsed) ? parsed : menuItems
   } catch (e) {
-    window.localStorage.setItem('marudeni-menu', JSON.stringify(menuItems))
     return menuItems
   }
 }
@@ -47,7 +40,54 @@ export const saveStoredMenu = (items: MenuItem[]) => {
   }
 }
 
-export const categories = ['All', 'Rice Dishes', 'Soups & Stews', 'Sides & Small Plates', 'Sweet Things']
+export const getStoredCategories = (): string[] => {
+  if (typeof window === 'undefined') return defaultCategories
+  const stored = window.localStorage.getItem('marudeni-categories')
+  if (!stored) {
+    window.localStorage.setItem('marudeni-categories', JSON.stringify(defaultCategories))
+    return defaultCategories
+  }
+  try {
+    const parsed = JSON.parse(stored)
+    return Array.isArray(parsed) ? parsed : defaultCategories
+  } catch (e) {
+    return defaultCategories
+  }
+}
+
+export const saveStoredCategories = (cats: string[]) => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.setItem('marudeni-categories', JSON.stringify(cats))
+    window.dispatchEvent(new Event('categories-updated'))
+  }
+}
+
+export async function syncWithDatabase() {
+  if (typeof window === 'undefined') return
+  try {
+    const res = await fetch('/api/menu')
+    if (res.ok) {
+      const items = await res.json()
+      saveStoredMenu(items)
+    }
+  } catch (e) {
+    console.error('Failed to sync menu items with Neon DB:', e)
+  }
+
+  try {
+    const res = await fetch('/api/categories')
+    if (res.ok) {
+      const cats = await res.json()
+      saveStoredCategories(cats.map((c: any) => c.name))
+    }
+  } catch (e) {
+    console.error('Failed to sync categories with Neon DB:', e)
+  }
+}
+
+// Fallback for static exports/calls
+export const categories = defaultCategories
+
 export const money = (value: number) => `₦${value.toLocaleString('en-NG')}`
 export const findItem = (id: string) => {
   const items = getStoredMenu()

@@ -69,8 +69,30 @@ I am sending my proof of payment for ${money(total)} next.`
     return `https://wa.me/2348033833205?text=${encodeURIComponent(message)}`
   }
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
+    
+    try {
+      await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: orderRef,
+          name,
+          email,
+          phone,
+          method,
+          address: method === 'delivery' ? address : '',
+          notes,
+          total
+        })
+      })
+    } catch (err) {
+      console.error('Failed to log order to Neon database:', err)
+    }
+
     setDone(true)
   }
 

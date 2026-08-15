@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ShoppingBag, X, ArrowUpRight, Home, Utensils, ChefHat, Phone } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { navItems } from '@/lib/marudeni-data'
+import { navItems, syncWithDatabase } from '@/lib/marudeni-data'
 import { CartModal } from '@/components/menu-components'
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
@@ -15,6 +15,9 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const [showEyeOpener, setShowEyeOpener] = useState(true)
 
   useEffect(() => {
+    // Sync with database
+    syncWithDatabase()
+
     const update = () => {
       setCount(Number(window.sessionStorage.getItem('marudeni-cart-count') || 0))
     }

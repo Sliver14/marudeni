@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Minus, Plus, ArrowRight, X, ShoppingBag, Search } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { CartLine, categories, findItem, menuItems, money, getStoredMenu } from '@/lib/marudeni-data'
+import { CartLine, categories, findItem, menuItems, money, getStoredMenu, getStoredCategories } from '@/lib/marudeni-data'
 
 function updateCart(id: string, delta: number) {
   const currentMenu = getStoredMenu()
@@ -77,14 +77,24 @@ export function MenuCard({ item }: { item: (typeof menuItems)[number] }) {
 
 export function MenuGrid() {
   const [items, setItems] = useState<any[]>([])
+  const [cats, setCats] = useState<string[]>(['All'])
   const [category, setCategory] = useState('All')
   const [search, setSearch] = useState('')
 
   useEffect(() => {
     setItems(getStoredMenu())
+    setCats(['All', ...getStoredCategories()])
+
     const update = () => setItems(getStoredMenu())
+    const updateCats = () => setCats(['All', ...getStoredCategories()])
+
     window.addEventListener('menu-updated', update)
-    return () => window.removeEventListener('menu-updated', update)
+    window.addEventListener('categories-updated', updateCats)
+
+    return () => {
+      window.removeEventListener('menu-updated', update)
+      window.removeEventListener('categories-updated', updateCats)
+    }
   }, [])
 
   const visible = items.filter((item) => {
@@ -111,7 +121,7 @@ export function MenuGrid() {
       </div>
 
       <div className="mb-8 flex gap-2.5 overflow-x-auto pb-3 scrollbar-none">
-        {categories.map((item) => (
+        {cats.map((item) => (
           <button
             key={item}
             onClick={() => setCategory(item)}
