@@ -35,7 +35,7 @@ I would like to request a catering quote.
 ${details}`
 
     // Open WhatsApp in a new tab
-    const url = `https://wa.me/2348101234567?text=${encodeURIComponent(message)}`
+    const url = `https://wa.me/2348033833205?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }
 
@@ -51,7 +51,7 @@ ${details}`
             Gather around
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-            Catering with a little soul.
+            Catering for Your Special Moments
           </h1>
           <p className="mt-2.5 max-w-2xl text-sm sm:text-base md:text-lg text-white/80 leading-relaxed">
             From corporate banquets and board lunches to weddings, birthdays, and intimate private dinners, we craft bespoke culinary experiences. Marudeni brings signature Nigerian delicacies and exceptional service to your guests.

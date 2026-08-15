@@ -30,7 +30,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-8 rounded-3xl border border-border/30 bg-card p-8 shadow-sm">
             <div>
               <strong className="text-primary text-lg font-bold block mb-2">Visit us</strong>
-              <p className="text-sm leading-6 text-primary/80">Magbodo Phase II<br />Lagos, Nigeria</p>
+              <p className="text-sm leading-6 text-primary/80">20a Michael Akinola str<br />Mangoro, Ikeja, Lagos</p>
             </div>
             <div>
               <strong className="text-primary text-lg font-bold block mb-2">Hours</strong>
@@ -38,7 +38,7 @@ export default function ContactPage() {
             </div>
             <div>
               <strong className="text-primary text-lg font-bold block mb-2">Talk to us</strong>
-              <p className="text-sm leading-6 text-primary/80">hello@marudeni.com<br />+234 810 123 4567</p>
+              <p className="text-sm leading-6 text-primary/80">hello@marudeni.com<br />+234 803 383 3205</p>
             </div>
           </div>
         </div>

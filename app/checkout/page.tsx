@@ -32,7 +32,7 @@ export default function CheckoutPage() {
   const total = subtotal + deliveryFee
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("0123456789")
+    navigator.clipboard.writeText("6587573273")
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -66,7 +66,7 @@ ${notes ? `*Notes:* ${notes}` : ''}
 
 I am sending my proof of payment for ${money(total)} next.`
 
-    return `https://wa.me/2348101234567?text=${encodeURIComponent(message)}`
+    return `https://wa.me/2348033833205?text=${encodeURIComponent(message)}`
   }
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -98,16 +98,16 @@ I am sending my proof of payment for ${money(total)} next.`
           <div className="rounded-2xl bg-secondary/60 p-5 space-y-2 border border-border/20">
             <div className="flex justify-between text-sm">
               <span className="text-primary/60 font-semibold">Bank Name:</span>
-              <span className="font-bold text-primary">GTBank (Guaranty Trust Bank)</span>
+              <span className="font-bold text-primary">OPay</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-primary/60 font-semibold">Account Name:</span>
-              <span className="font-bold text-primary">Marudeni Foods Ltd.</span>
+              <span className="font-bold text-primary">Marudeni Foods</span>
             </div>
             <div className="flex justify-between items-center text-sm">
               <span className="text-primary/60 font-semibold">Account Number:</span>
               <div className="flex items-center gap-1.5 font-bold text-primary">
-                <span>0123456789</span>
+                <span>6587573273</span>
                 <button onClick={handleCopy} className="p-1 hover:bg-secondary rounded text-border" title="Copy Account Number">
                   {copied ? <Check className="size-4 text-green-600" /> : <Copy className="size-4" />}
                 </button>
@@ -146,7 +146,7 @@ I am sending my proof of payment for ${money(total)} next.`
       
       <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.24em] text-border">Checkout</p>
       <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-black text-primary">Place your order</h1>
-
+ 
       {cart.length === 0 ? (
         <div className="mt-12 text-center rounded-3xl border-2 border-dashed border-border/40 p-12">
           <p className="font-serif text-2xl font-bold">Your cart is empty.</p>
@@ -173,7 +173,7 @@ I am sending my proof of payment for ${money(total)} next.`
                   <input type="radio" name="method" checked={method === 'pickup'} onChange={() => setMethod('pickup')} className="accent-border" />
                   <div>
                     <p className="text-sm font-semibold text-primary">Pickup</p>
-                    <p className="text-xs text-primary/60">Collect from Magbodo Phase II</p>
+                    <p className="text-xs text-primary/60">Collect from 20a Michael Akinola str Mangoro, Ikeja, Lagos</p>
                   </div>
                   <span className="ml-auto text-sm text-border font-bold">Free</span>
                 </label>

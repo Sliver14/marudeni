@@ -39,7 +39,7 @@ export default function AboutPage() {
               Our culinary journey began around family tables, where the kitchen was the heartbeat of the home. We learned that the secret to the perfect Jollof rice is patience—letting the spiced tomato-pepper base slow-cook to release its smoky depth. We learned that a great soup requires stone-ground melon seeds, fresh leafy spinach, and the finest selection of premium spices.
             </p>
             <p>
-              Today, we carry these lessons into our kitchen in <strong>Magbodo, Lagos</strong>. We prepare our dishes fresh daily, combining time-tested cooking methods with absolute cleanliness. We don't believe in shortcuts; we believe in the magic of slow-simmered stews, rich spice blends, and the satisfying texture of perfectly prepared swallows.
+              Today, we carry these lessons into our kitchen in <strong>Mangoro, Ikeja, Lagos</strong>. We prepare our dishes fresh daily, combining time-tested cooking methods with absolute cleanliness. We don't believe in shortcuts; we believe in the magic of slow-simmered stews, rich spice blends, and the satisfying texture of perfectly prepared swallows.
             </p>
             <p>
               Whether you are ordering a quick lunch, celebrating a milestone, or hosting an event with our catering services, you are tasting a legacy. We invite you to sit at our table, savor the rich flavors of Nigeria, and make some great memories with us.

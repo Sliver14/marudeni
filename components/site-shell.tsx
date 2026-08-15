@@ -260,6 +260,17 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.86.99 2.07 1.68 3.39 1.95v3.91c-1.42-.01-2.81-.46-4.01-1.25-.26-.17-.5-.36-.73-.56-.03 2.92.01 5.84-.02 8.76-.08 1.4-.49 2.81-1.34 3.92-1.2 1.61-3.21 2.61-5.26 2.51-2.22-.05-4.42-1.34-5.32-3.37-1.12-2.38-.41-5.4 1.63-7.03 1.29-.98 2.94-1.38 4.54-1.13v3.98c-.89-.25-1.89-.04-2.58.58-.69.64-.94 1.65-.67 2.54.29.89 1.15 1.56 2.1 1.56 1.48.06 2.76-1.04 2.89-2.51.08-3.05.02-6.1.04-9.15.01-4.28-.02-8.56.03-12.84z" />
                 </svg>
               </a>
+              <a
+                href="https://www.youtube.com/@marudenifoods"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-border hover:scale-110 transition-all duration-300"
+                aria-label="YouTube"
+              >
+                <svg className="size-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.387.507 9.387.507s7.517 0 9.387-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" clipRule="evenodd" />
+                </svg>
+              </a>
             </div>
             <p className="text-xs text-white/50">© 2026 Marudeni Foods. Premium experience.</p>
           </div>

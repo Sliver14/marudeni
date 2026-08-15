@@ -6,7 +6,7 @@ export const menuItems: MenuItem[] = [
   { id: 'suya', name: 'Spicy Beef Suya Skewers', category: 'Sides & Small Plates', description: 'Thin strips of spiced beef coated in yaji (ground peanut chili spice blend) and grilled over an open flame.', price: 6000, image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=85', tags: ['Popular', 'Spicy'] },
   { id: 'eforiro', name: 'Efo Riro (Spinach Stew)', category: 'Soups & Stews', description: 'Rich spinach stew cooked with locust beans, red bell peppers, palm oil, and beef tripe, served with white rice.', price: 11000, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85', tags: ['Healthy'] },
   { id: 'egusi', name: 'Egusi Soup & Poundo Yam', category: 'Soups & Stews', description: 'Ground melon seed soup cooked with spinach, palm oil, stockfish, and cow skin, served with soft pounded yam.', price: 14500, image: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=900&q=85', tags: ['Signature'] },
-  { id: 'meatpie', name: 'Golden Beef Meat Pie', category: 'Sides & Small Plates', description: 'Buttery shortcrust pastry filled with seasoned minced beef, potatoes, and carrots.', price: 4000, image: 'https://images.unsplash.com/photo-1589119908995-c6800faecf39?auto=format&fit=crop&w=900&q=85', tags: ['Popular'] },
+  { id: 'meatpie', name: 'Golden Beef Meat Pie', category: 'Sides & Small Plates', description: 'Buttery shortcrust pastry filled with seasoned minced beef, potatoes, and carrots.', price: 4000, image: 'https://images.unsplash.com/photo-1628102477218-ec3bd673a628?auto=format&fit=crop&w=900&q=85', tags: ['Popular'] },
   { id: 'puffpuff', name: 'Sweet Nigerian Puff Puff', category: 'Sweet Things', description: 'Deep-fried sweet dough balls, soft, golden and pillowy with a hint of nutmeg.', price: 3500, image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85', tags: ['Vegetarian'] },
   { id: 'yamdodo', name: 'Fried Yam & Dodo with Peppered Chicken', category: 'Sides & Small Plates', description: 'Thick golden fried yam fries paired with sweet fried plantains (dodo) and tender chicken drumsticks glazed in rich, spicy peppered sauce.', price: 8500, image: '/menu/1e15dd4f78c14b17082781c679fc29ce.png', tags: ['Popular'] },
   { id: 'boilyam', name: 'Boiled Yam & Garden Egg Sauce with Fish', category: 'Sides & Small Plates', description: 'Lightly salted boiled white yam slices served with a delicate garden egg, egg and tomato sauce, accompanied by grilled whole fish.', price: 9000, image: '/menu/3d8e73880268c8f3bfe3770c94083df4.png', tags: ['Healthy'] },
@@ -25,7 +25,11 @@ export const getStoredMenu = (): MenuItem[] => {
   }
   try {
     const parsed = JSON.parse(stored)
-    if (!Array.isArray(parsed) || parsed.length !== menuItems.length) {
+    const needsSync = !Array.isArray(parsed) || 
+      parsed.length !== menuItems.length || 
+      parsed.some((item, index) => item.id !== menuItems[index].id || item.image !== menuItems[index].image)
+
+    if (needsSync) {
       window.localStorage.setItem('marudeni-menu', JSON.stringify(menuItems))
       return menuItems
     }
