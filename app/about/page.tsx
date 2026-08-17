@@ -1,6 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, ChefHat, Award, ShieldCheck } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Our Story & Culinary Heritage',
+  description: 'Learn about the legacy of Marudeni Foods. Handcrafting uncompromised premium Nigerian delicacies in Mangoro, Ikeja, Lagos with passion, hygiene, and authentic slow-cooked techniques.',
+  alternates: {
+    canonical: '/about',
+  },
+}
 
 export default function AboutPage() {
   return (

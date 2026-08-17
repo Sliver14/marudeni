@@ -1,6 +1,15 @@
 import { MenuGrid } from '@/components/menu-components'
 import { Utensils } from 'lucide-react'
 import Image from 'next/image'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Our Delicacies Menu',
+  description: 'Explore Marudeni Foods menu featuring premium party Jollof Rice, Ofada, Egusi, Efo Riro, Suya, Puff Puff, and other authentic Nigerian specialties cooked fresh daily in Lagos.',
+  alternates: {
+    canonical: '/menu',
+  },
+}
 
 export default function MenuPage() {
   return (
