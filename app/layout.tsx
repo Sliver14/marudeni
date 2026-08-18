@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: 'Authentic Nigerian and West African flavors crafted with custom spices and passion in Lagos. Order our signature party Jollof rice, Egusi soup, Ofada, stews, and sides online.',
   keywords: ['Nigerian Food Lagos', 'West African Delicacies Ikeja', 'Jollof Rice delivery Ikeja', 'Egusi Soup Lagos', 'Marudeni Foods catering', 'authentic Nigerian stews', 'Mangoro Ikeja food delivery', 'Nigerian party catering'],
   generator: 'insightnovatech.com',
-  metadataBase: new URL('https://marudeni.com'),
+  metadataBase: new URL('https://marudenifoods.com'),
   alternates: {
     canonical: '/',
   },
