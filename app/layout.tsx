@@ -6,14 +6,14 @@ import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 const dmSerif = DM_Serif_Display({ subsets: ['latin'], weight: '400', variable: '--font-dm-serif' })
-export const metadata: Metadata = { 
+export const metadata: Metadata = {
   title: {
     default: 'Marudeni Foods — Premium Nigerian Delicacies & Catering',
     template: '%s | Marudeni Foods'
   },
   description: 'Authentic Nigerian and West African flavors crafted with custom spices and passion in Lagos. Order our signature party Jollof rice, Egusi soup, Ofada, stews, and sides online.',
   keywords: ['Nigerian Food Lagos', 'West African Delicacies Ikeja', 'Jollof Rice delivery Ikeja', 'Egusi Soup Lagos', 'Marudeni Foods catering', 'authentic Nigerian stews', 'Mangoro Ikeja food delivery', 'Nigerian party catering'],
-  generator: 'v0.app',
+  generator: 'insightnovatech.com',
   metadataBase: new URL('https://marudeni.com'),
   alternates: {
     canonical: '/',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Marudeni Foods — Premium Nigerian Delicacies & Catering',
     description: 'Authentic Nigerian and West African flavors crafted with custom spices and passion in Lagos. Order our signature party Jollof rice, Egusi soup, Ofada, stews, and sides online.',
-    url: 'https://marudeni.com',
+    url: 'https://marudenifoods.com',
     siteName: 'Marudeni Foods',
     locale: 'en_NG',
     type: 'website',
