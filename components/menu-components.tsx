@@ -32,7 +32,7 @@ export function AddButton({ id }: { id: string }) {
         setAdded(true)
         setTimeout(() => setAdded(false), 1200)
       }}
-      className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground border border-border/40 hover:bg-primary/95 hover:border-border transition-all hover:scale-105"
+      className="rounded-full bg-primary px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-primary-foreground border border-border/40 hover:bg-primary/95 hover:border-border transition-all hover:scale-105 cursor-pointer w-full sm:w-auto"
     >
       {added ? '✓ Added' : 'Add to cart'}
     </button>
@@ -40,6 +40,9 @@ export function AddButton({ id }: { id: string }) {
 }
 
 export function MenuCard({ item }: { item: (typeof menuItems)[number] }) {
+  const [expanded, setExpanded] = useState(false)
+  const isLongDescription = item.description.length > 60
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-[1.5rem] border border-border/30 bg-card shadow-sm hover:shadow-md transition-all duration-350">
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -61,13 +64,35 @@ export function MenuCard({ item }: { item: (typeof menuItems)[number] }) {
           ))}
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="font-serif text-xl font-bold text-primary leading-tight">{item.name}</h3>
-          <span className="font-bold text-border shrink-0">{money(item.price)}</span>
+      <div className="flex flex-1 flex-col gap-2 sm:gap-3 p-3.5 sm:p-5">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+          <h3 className="font-serif text-sm sm:text-lg md:text-xl font-bold text-primary leading-tight">{item.name}</h3>
+          <span className="font-bold text-border shrink-0 text-sm sm:text-base">{money(item.price)}</span>
         </div>
-        <p className="flex-1 text-sm leading-6 text-primary/75">{item.description}</p>
-        <div className="pt-2">
+        
+        <div className="flex-1">
+          <p className="text-xs sm:text-sm leading-relaxed sm:leading-6 text-primary/75">
+            <span className="sm:hidden">
+              {isLongDescription && !expanded 
+                ? `${item.description.slice(0, 50)}...` 
+                : item.description}
+            </span>
+            <span className="hidden sm:inline">
+              {item.description}
+            </span>
+            
+            {isLongDescription && (
+              <button
+                onClick={() => setExpanded(!expanded)}
+                className="ml-1 font-bold text-border hover:text-primary transition-colors text-[10px] sm:hidden cursor-pointer inline-block"
+              >
+                {expanded ? 'less' : 'more'}
+              </button>
+            )}
+          </p>
+        </div>
+
+        <div className="pt-1.5 sm:pt-2">
           <AddButton id={item.id} />
         </div>
       </div>
@@ -191,7 +216,7 @@ export function MenuGrid() {
       </div>
 
       {loading ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
             <MenuCardSkeleton key={i} />
           ))}
@@ -202,7 +227,7 @@ export function MenuGrid() {
           <p className="text-sm text-primary/70 mt-1">Try resetting your search filters.</p>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-3">
           {visible.map((item) => (
             <MenuCard key={item.id} item={item} />
           ))}
@@ -214,13 +239,13 @@ export function MenuGrid() {
 
 export function CartModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [count, setCount] = useState(0)
+  const [showClearConfirm, setShowClearConfirm] = useState(false)
 
-  const clearCart = () => {
-    if (confirm('Are you sure you want to clear your cart?')) {
-      window.sessionStorage.setItem('marudeni-cart', '[]')
-      window.sessionStorage.setItem('marudeni-cart-count', '0')
-      window.dispatchEvent(new Event('cart-updated'))
-    }
+  const handleClearCart = () => {
+    window.sessionStorage.setItem('marudeni-cart', '[]')
+    window.sessionStorage.setItem('marudeni-cart-count', '0')
+    window.dispatchEvent(new Event('cart-updated'))
+    setShowClearConfirm(false)
   }
 
   useEffect(() => {
@@ -253,6 +278,7 @@ export function CartModal({ open, onClose }: { open: boolean; onClose: () => voi
       aria-label="Your cart"
     >
       <button className="absolute inset-0 cursor-default" aria-label="Close cart" onClick={onClose} />
+      
       <aside className="fixed inset-y-0 right-0 z-10 flex h-full w-full max-w-lg flex-col bg-background shadow-2xl transition-all duration-300 rounded-none border-l border-l-border/20">
         <div className="flex items-start justify-between border-b border-border/20 px-5 py-5 sm:px-8">
           <div>
@@ -262,14 +288,37 @@ export function CartModal({ open, onClose }: { open: boolean; onClose: () => voi
             </h2>
             <p className="mt-1 text-[10px] sm:text-xs text-primary/70">A little taste of home, ready when you are.</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 relative">
             {count > 0 && (
-              <button
-                onClick={clearCart}
-                className="text-xs font-bold text-red-500 hover:text-red-700 transition-colors px-3 py-1.5 rounded-full hover:bg-red-500/10"
-              >
-                Clear all
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setShowClearConfirm(!showClearConfirm)}
+                  className="text-xs font-bold text-red-500 hover:text-red-700 transition-colors px-3 py-1.5 rounded-full hover:bg-red-500/10 cursor-pointer"
+                >
+                  Clear all
+                </button>
+                
+                {/* Small Inline Confirmation Panel */}
+                {showClearConfirm && (
+                  <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-border/30 bg-background p-4 text-center shadow-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <p className="text-xs font-bold text-primary">Clear all items?</p>
+                    <div className="mt-3 flex gap-2">
+                      <button
+                        onClick={() => setShowClearConfirm(false)}
+                        className="w-full rounded-full border border-border/40 hover:bg-secondary px-3 py-1.5 text-[10px] sm:text-xs font-bold text-primary hover:text-white transition-all cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleClearCart}
+                        className="w-full rounded-full bg-red-500 border border-red-500 px-3 py-1.5 text-[10px] sm:text-xs font-bold text-white hover:bg-red-600 hover:border-red-600 transition-all shadow-sm cursor-pointer"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
             <button
               onClick={onClose}
@@ -293,18 +342,25 @@ export function CartView({ isModal = false, onClose }: { isModal?: boolean; onCl
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    const currentMenu = getStoredMenu()
-    const rawCart: CartLine[] = JSON.parse(window.sessionStorage.getItem('marudeni-cart') || '[]')
-    const cleaned = rawCart.filter((item) => currentMenu.some((m) => m.id === item.id))
-    
-    if (cleaned.length !== rawCart.length) {
-      window.sessionStorage.setItem('marudeni-cart', JSON.stringify(cleaned))
-      window.sessionStorage.setItem('marudeni-cart-count', String(cleaned.reduce((sum, item) => sum + item.quantity, 0)))
-      window.dispatchEvent(new Event('cart-updated'))
+    const update = () => {
+      const currentMenu = getStoredMenu()
+      const rawCart: CartLine[] = JSON.parse(window.sessionStorage.getItem('marudeni-cart') || '[]')
+      const cleaned = rawCart.filter((item) => currentMenu.some((m) => m.id === item.id))
+      
+      if (cleaned.length !== rawCart.length) {
+        window.sessionStorage.setItem('marudeni-cart', JSON.stringify(cleaned))
+        window.sessionStorage.setItem('marudeni-cart-count', String(cleaned.reduce((sum, item) => sum + item.quantity, 0)))
+        window.dispatchEvent(new Event('cart-updated'))
+      }
+
+      setCart(cleaned)
     }
 
-    setCart(cleaned)
+    update()
     setReady(true)
+
+    window.addEventListener('cart-updated', update)
+    return () => window.removeEventListener('cart-updated', update)
   }, [])
 
   const sync = (id: string, delta: number) => {
@@ -395,3 +451,82 @@ export function CartView({ isModal = false, onClose }: { isModal?: boolean; onCl
     </div>
   )
 }
+
+export function FeaturedMenu() {
+  const [items, setItems] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const checkSyncStatus = () => {
+      const syncStatus = (window as any).__menuSyncStatus
+      if (syncStatus === 'success' || syncStatus === 'error') {
+        setLoading(false)
+      } else if (syncStatus === 'loading') {
+        setLoading(true)
+      } else {
+        const stored = window.localStorage.getItem('marudeni-menu')
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored)
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setLoading(false)
+              return
+            }
+          } catch (e) {}
+        }
+        setLoading(true)
+      }
+    }
+
+    setItems(getStoredMenu())
+    checkSyncStatus()
+
+    const update = () => {
+      setItems(getStoredMenu())
+      checkSyncStatus()
+    }
+    const handleSyncStatus = () => {
+      checkSyncStatus()
+    }
+
+    window.addEventListener('menu-updated', update)
+    window.addEventListener('menu-sync-status-change', handleSyncStatus)
+
+    return () => {
+      window.removeEventListener('menu-updated', update)
+      window.removeEventListener('menu-sync-status-change', handleSyncStatus)
+    }
+  }, [])
+
+  let featured = items.filter(
+    (item) => item.tags && (item.tags.includes('Signature') || item.tags.includes('Popular'))
+  )
+
+  // Fallback: if we have fewer than 4 signature/popular items, fill up with other available items
+  if (featured.length < 4) {
+    const featuredIds = new Set(featured.map((item) => item.id))
+    const otherItems = items.filter((item) => !featuredIds.has(item.id))
+    featured = [...featured, ...otherItems].slice(0, 4)
+  } else {
+    featured = featured.slice(0, 4)
+  }
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-4">
+        {[...Array(4)].map((_, i) => (
+          <MenuCardSkeleton key={i} />
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid grid-cols-2 gap-3.5 sm:gap-6 lg:grid-cols-4">
+      {featured.map((item) => (
+        <MenuCard key={item.id} item={item} />
+      ))}
+    </div>
+  )
+}
+

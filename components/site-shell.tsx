@@ -55,7 +55,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
           <Link
-            href="/menu"
+            href="/"
             className="flex items-center gap-2.5 font-serif text-2xl font-bold tracking-tight text-white transition-colors"
           >
             <Image src="/logo.svg" alt="Marudeni Foods Logo" width={38} height={38} className="object-contain" />
