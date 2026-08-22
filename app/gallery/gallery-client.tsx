@@ -138,7 +138,7 @@ const galleryItems: GalleryItem[] = [
   {
     id: '16',
     type: 'video',
-    src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    src: '/gallery/video1.mp4',
     thumbnail: '/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (1).jpeg',
     title: 'Chef Preparing Ayamase Sauce (BTS)',
     category: 'Videos',
@@ -147,7 +147,7 @@ const galleryItems: GalleryItem[] = [
   {
     id: '17',
     type: 'video',
-    src: 'https://www.w3schools.com/html/movie.mp4',
+    src: '/gallery/video2.mp4',
     thumbnail: '/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM.jpeg',
     title: 'Lekki Wedding Buffet Setup (Vlog)',
     category: 'Videos',
@@ -207,18 +207,6 @@ export default function GalleryClient() {
                 />
               )}
             </div>
-
-            <div className="p-4 sm:p-6 text-white">
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-border">
-                {lightboxItem.category === 'Catering' ? 'Event Catering' : lightboxItem.category === 'BTS' ? 'Behind the Scenes' : lightboxItem.category === 'Dishes' ? 'Signature Dishes' : 'Video Showcase'}
-              </span>
-              <h3 className="font-serif text-lg sm:text-2xl font-black mt-1 text-white leading-tight">
-                {lightboxItem.title}
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-white/70 leading-relaxed">
-                {lightboxItem.description}
-              </p>
-            </div>
           </div>
         </div>
       )}
@@ -268,13 +256,23 @@ export default function GalleryClient() {
             className="group relative overflow-hidden rounded-[1.5rem] border border-border/30 bg-card shadow-sm hover:shadow-md transition-all duration-350 cursor-pointer"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-black/5">
-              <Image
-                src={item.type === 'video' ? (item.thumbnail || '') : item.src}
-                alt={item.title}
-                fill
-                className="object-cover transition duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
+              {item.type === 'video' ? (
+                <video
+                  src={`${item.src}#t=0.5`}
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                  muted
+                  playsInline
+                />
+              ) : (
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              )}
               
               {/* Overlays */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
