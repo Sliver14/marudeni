@@ -14,7 +14,7 @@ import {
   Phone
 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { FeaturedMenu } from '@/components/menu-components'
+import { FeaturedMenu, ScrollingGallery } from '@/components/menu-components'
 
 export const metadata: Metadata = {
   title: 'Marudeni Foods — Premium Nigerian Delicacies & Catering',
@@ -229,102 +229,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Visual Showcase Grid - Animated Vertical Gallery */}
-          <div className="lg:col-span-6 h-[480px] overflow-hidden relative grid grid-cols-2 gap-4 hover-pause rounded-3xl">
-            {/* Top and Bottom Fade Gradient Mask to blend with the warm cream background */}
-            {/* <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#EFE7DC] to-transparent z-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#EFE7DC] to-transparent z-10 pointer-events-none" /> */}
-
-            {/* Left Column (Scrolling Up) */}
-            <div className="flex flex-col gap-4 animate-marquee-up">
-              {/* Original Set */}
-              {[
-                "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.07 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.10 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (2).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (3).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (4).jpeg"
-              ].map((src, i) => (
-                <div key={`left-orig-${i}`} className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-border/25 bg-secondary/5 shadow-md shrink-0">
-                  <Image
-                    src={src}
-                    alt="Marudeni Delicacy"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-1500"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-              {/* Duplicated Set */}
-              {[
-                "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.07 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.10 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (2).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (3).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (4).jpeg"
-              ].map((src, i) => (
-                <div key={`left-dup-${i}`} className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-border/25 bg-secondary/5 shadow-md shrink-0">
-                  <Image
-                    src={src}
-                    alt="Marudeni Delicacy"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-1200"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Right Column (Scrolling Down) */}
-            <div className="flex flex-col gap-4 animate-marquee-down">
-              {/* Original Set */}
-              {[
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (2).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (3).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (2).jpeg"
-              ].map((src, i) => (
-                <div key={`right-orig-${i}`} className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-border/25 bg-secondary/5 shadow-md shrink-0">
-                  <Image
-                    src={src}
-                    alt="Marudeni Delicacy"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-              {/* Duplicated Set */}
-              {[
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (2).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (3).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM.jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (1).jpeg",
-                "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (2).jpeg"
-              ].map((src, i) => (
-                <div key={`right-dup-${i}`} className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-border/25 bg-secondary/5 shadow-md shrink-0">
-                  <Image
-                    src={src}
-                    alt="Marudeni Delicacy"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Visual Showcase Grid - Animated Vertical Gallery with Lightbox zoom */}
+          <ScrollingGallery />
         </div>
       </section>
 

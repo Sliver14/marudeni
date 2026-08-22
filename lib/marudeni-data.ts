@@ -111,6 +111,7 @@ export const cartCount = (cart: CartLine[]) => cart.reduce((sum, line) => sum + 
 export const navItems = [
   { href: '/menu', label: 'Menu' },
   { href: '/catering', label: 'Catering' },
+  { href: '/gallery', label: 'Gallery' },
   { href: '/about', label: 'Our story' },
   { href: '/contact', label: 'Contact' }
 ]

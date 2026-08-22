@@ -69,18 +69,18 @@ export function MenuCard({ item }: { item: (typeof menuItems)[number] }) {
           <h3 className="font-serif text-sm sm:text-lg md:text-xl font-bold text-primary leading-tight">{item.name}</h3>
           <span className="font-bold text-border shrink-0 text-sm sm:text-base">{money(item.price)}</span>
         </div>
-        
+
         <div className="flex-1">
           <p className="text-xs sm:text-sm leading-relaxed sm:leading-6 text-primary/75">
             <span className="sm:hidden">
-              {isLongDescription && !expanded 
-                ? `${item.description.slice(0, 50)}...` 
+              {isLongDescription && !expanded
+                ? `${item.description.slice(0, 50)}...`
                 : item.description}
             </span>
             <span className="hidden sm:inline">
               {item.description}
             </span>
-            
+
             {isLongDescription && (
               <button
                 onClick={() => setExpanded(!expanded)}
@@ -146,7 +146,7 @@ export function MenuGrid() {
               setLoading(false)
               return
             }
-          } catch (e) {}
+          } catch (e) { }
         }
         setLoading(true)
       }
@@ -204,11 +204,10 @@ export function MenuGrid() {
           <button
             key={item}
             onClick={() => setCategory(item)}
-            className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
-              category === item
-                ? 'bg-primary text-border shadow-sm'
-                : 'border border-border/40 hover:bg-secondary text-primary hover:text-border'
-            }`}
+            className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${category === item
+              ? 'bg-primary text-border shadow-sm'
+              : 'border border-border/40 hover:bg-secondary text-primary hover:text-border'
+              }`}
           >
             {item}
           </button>
@@ -255,7 +254,7 @@ export function CartModal({ open, onClose }: { open: boolean; onClose: () => voi
       const rawCart = JSON.parse(window.sessionStorage.getItem('marudeni-cart') || '[]')
       // Remove any items that no longer exist in the menu data
       const cleaned = rawCart.filter((item: any) => currentMenu.some((m) => m.id === item.id))
-      
+
       if (cleaned.length !== rawCart.length) {
         window.sessionStorage.setItem('marudeni-cart', JSON.stringify(cleaned))
         window.sessionStorage.setItem('marudeni-cart-count', String(cleaned.reduce((sum: number, item: any) => sum + item.quantity, 0)))
@@ -278,7 +277,7 @@ export function CartModal({ open, onClose }: { open: boolean; onClose: () => voi
       aria-label="Your cart"
     >
       <button className="absolute inset-0 cursor-default" aria-label="Close cart" onClick={onClose} />
-      
+
       <aside className="fixed inset-y-0 right-0 z-10 flex h-full w-full max-w-lg flex-col bg-background shadow-2xl transition-all duration-300 rounded-none border-l border-l-border/20">
         <div className="flex items-start justify-between border-b border-border/20 px-5 py-5 sm:px-8">
           <div>
@@ -297,7 +296,7 @@ export function CartModal({ open, onClose }: { open: boolean; onClose: () => voi
                 >
                   Clear all
                 </button>
-                
+
                 {/* Small Inline Confirmation Panel */}
                 {showClearConfirm && (
                   <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-border/30 bg-background p-4 text-center shadow-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200">
@@ -346,7 +345,7 @@ export function CartView({ isModal = false, onClose }: { isModal?: boolean; onCl
       const currentMenu = getStoredMenu()
       const rawCart: CartLine[] = JSON.parse(window.sessionStorage.getItem('marudeni-cart') || '[]')
       const cleaned = rawCart.filter((item) => currentMenu.some((m) => m.id === item.id))
-      
+
       if (cleaned.length !== rawCart.length) {
         window.sessionStorage.setItem('marudeni-cart', JSON.stringify(cleaned))
         window.sessionStorage.setItem('marudeni-cart-count', String(cleaned.reduce((sum, item) => sum + item.quantity, 0)))
@@ -472,7 +471,7 @@ export function FeaturedMenu() {
               setLoading(false)
               return
             }
-          } catch (e) {}
+          } catch (e) { }
         }
         setLoading(true)
       }
@@ -527,6 +526,93 @@ export function FeaturedMenu() {
         <MenuCard key={item.id} item={item} />
       ))}
     </div>
+  )
+}
+
+export function ScrollingGallery() {
+  const [activeImage, setActiveImage] = useState<string | null>(null)
+
+  const leftImages = [
+    "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM (1).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM.jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.07 PM.jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.10 PM.jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (1).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (2).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (3).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (4).jpeg"
+  ]
+
+  const rightImages = [
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM.jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (1).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (2).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (3).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM.jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (1).jpeg",
+    "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (2).jpeg"
+  ]
+
+  return (
+    <>
+      {activeImage && (
+        <div
+          onClick={() => setActiveImage(null)}
+          className="fixed inset-0 z-[100] bg-primary/95 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+        >
+          <div className="relative w-full max-w-4xl aspect-[4/3] rounded-3xl overflow-hidden border-2 border-border/30 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            <Image
+              src={activeImage}
+              alt="Delicacy Preview"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="lg:col-span-6 h-[480px] overflow-hidden relative grid grid-cols-2 gap-4 hover-pause rounded-3xl cursor-zoom-in">
+        {/* <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#EFE7DC] to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#EFE7DC] to-transparent z-10 pointer-events-none" /> */}
+
+        <div className="flex flex-col gap-4 animate-marquee-up">
+          {[...leftImages, ...leftImages].map((src, i) => (
+            <div
+              key={`left-${i}`}
+              onClick={() => setActiveImage(src)}
+              className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-border/25 bg-secondary/5 shadow-md shrink-0 transform transition-all duration-1500 hover:scale-[1.02]"
+            >
+              <Image
+                src={src}
+                alt="Marudeni Delicacy"
+                fill
+                className="object-cover transition duration-1500 hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-4 animate-marquee-down">
+          {[...rightImages, ...rightImages].map((src, i) => (
+            <div
+              key={`right-${i}`}
+              onClick={() => setActiveImage(src)}
+              className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-border/25 bg-secondary/5 shadow-md shrink-0 transform transition-all duration-1000 hover:scale-[1.02]"
+            >
+              <Image
+                src={src}
+                alt="Marudeni Delicacy"
+                fill
+                className="object-cover transition duration-1200 hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   )
 }
 

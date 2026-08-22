@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { ShoppingBag, X, ArrowUpRight, Home, Utensils, ChefHat, Phone } from 'lucide-react'
+import { ShoppingBag, X, ArrowUpRight, Home, Utensils, ChefHat, Phone, Image as ImageIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { navItems, syncWithDatabase } from '@/lib/marudeni-data'
 import { CartModal } from '@/components/menu-components'
@@ -145,6 +145,26 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                 }`}
             >
               Catering
+            </span>
+          </Link>
+
+          <Link
+            href="/gallery"
+            className="flex flex-col items-center gap-1"
+          >
+            <div
+              className={`rounded-full px-5 py-1 flex items-center justify-center transition-all duration-300 ${pathname === '/gallery'
+                  ? 'bg-secondary text-border border border-border/20 shadow-sm scale-105'
+                  : 'bg-transparent text-primary/50 hover:bg-secondary/10'
+                }`}
+            >
+              <ImageIcon className={`size-4 transition-colors ${pathname === '/gallery' ? 'text-border' : 'text-primary/50'}`} />
+            </div>
+            <span
+              className={`text-[9px] font-bold uppercase tracking-wider transition-colors ${pathname === '/gallery' ? 'text-primary font-black' : 'text-primary/50'
+                }`}
+            >
+              Gallery
             </span>
           </Link>
 

@@ -151,6 +151,39 @@ ${details}`
           )}
         </div>
       </div>
+
+      {/* Event Gallery Showcase */}
+      <div className="mt-16 border-t border-border/25 pt-12 mb-8">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="font-serif text-2xl sm:text-3xl font-black text-primary mb-3">
+            Event Showcase & Presentation
+          </h2>
+          <p className="text-sm sm:text-base text-primary/70">
+            A visual glimpse into our premium buffet setups, bespoke private dinner platters, and custom party delicacies prepared for Lagos tables.
+          </p>
+        </div>
+
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
+          {[
+            { src: "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM.jpeg", alt: "Catering Setup 1" },
+            { src: "/gallery/WhatsApp Image 2026-08-19 at 12.00.07 PM.jpeg", alt: "Catering Setup 2" },
+            { src: "/gallery/WhatsApp Image 2026-08-19 at 12.00.10 PM.jpeg", alt: "Catering Setup 3" },
+            { src: "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM (1).jpeg", alt: "Catering Setup 4" },
+            { src: "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (1).jpeg", alt: "Catering Setup 5" },
+            { src: "/gallery/WhatsApp Image 2026-08-19 at 12.00.24 PM (1).jpeg", alt: "Catering Setup 6" },
+          ].map((img, i) => (
+            <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/20 bg-secondary/5 shadow-sm hover:scale-[1.02] hover:border-border transition-all duration-350">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </main>
   )
 }
