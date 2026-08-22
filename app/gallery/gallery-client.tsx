@@ -265,7 +265,7 @@ export default function GalleryClient() {
           <article 
             key={item.id}
             onClick={() => setLightboxItem(item)}
-            className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border border-border/30 bg-card shadow-sm hover:shadow-md transition-all duration-350 cursor-pointer"
+            className="group relative overflow-hidden rounded-[1.5rem] border border-border/30 bg-card shadow-sm hover:shadow-md transition-all duration-350 cursor-pointer"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-black/5">
               <Image
@@ -295,17 +295,6 @@ export default function GalleryClient() {
                   {item.type === 'video' ? <Film className="size-3" /> : <Camera className="size-3" />}
                   {item.category}
                 </span>
-              </div>
-            </div>
-            
-            <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-serif text-sm sm:text-md font-bold text-primary leading-tight group-hover:text-border transition-colors">
-                  {item.title}
-                </h3>
-                <p className="mt-1.5 text-xs text-primary/70 leading-relaxed line-clamp-2">
-                  {item.description}
-                </p>
               </div>
             </div>
           </article>
