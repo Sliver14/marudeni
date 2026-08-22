@@ -253,7 +253,7 @@ export default function HomePage() {
                     src={src}
                     alt="Marudeni Delicacy"
                     fill
-                    className="object-cover hover:scale-105 transition-transform duration-1000"
+                    className="object-cover hover:scale-105 transition-transform duration-1500"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                 </div>
@@ -274,7 +274,7 @@ export default function HomePage() {
                     src={src}
                     alt="Marudeni Delicacy"
                     fill
-                    className="object-cover hover:scale-105 transition-transform duration-800"
+                    className="object-cover hover:scale-105 transition-transform duration-1200"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                 </div>
