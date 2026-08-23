@@ -46,4 +46,4 @@ export const metadata: Metadata = {
   },
 }
 export const viewport: Viewport = { colorScheme: 'light', themeColor: '#0B2117' }
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en" className="bg-background"><body className={`${geist.variable} ${dmSerif.variable} antialiased`}><SiteShell>{children}</SiteShell>{process.env.NODE_ENV === 'production' && <Analytics />}</body></html> }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en" className="bg-background"><body className={`${geist.variable} ${dmSerif.variable} antialiased`}><SiteShell>{children}</SiteShell><Analytics /></body></html> }
