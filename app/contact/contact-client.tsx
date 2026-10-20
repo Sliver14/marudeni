@@ -57,25 +57,61 @@ export default function ContactClient() {
           <div className="rounded-3xl border border-border/30 bg-card p-6 sm:p-8 shadow-sm flex flex-col gap-8">
             <h2 className="font-serif text-2xl font-bold text-primary border-b border-border/20 pb-3">Contact Information</h2>
             
-            {/* Visit Us */}
-            <div className="flex gap-4 items-start group">
-              <div className="p-3.5 rounded-2xl bg-secondary/10 border border-secondary/20 text-secondary transition-colors duration-300 group-hover:bg-secondary group-hover:text-white">
-                <MapPin className="size-5" />
+            {/* Visit Us - Locations */}
+            <div className="flex flex-col gap-5">
+              {/* Location 1: Grill Spot */}
+              <div className="flex gap-4 items-start group">
+                <div className="p-3.5 rounded-2xl bg-secondary/10 border border-secondary/20 text-secondary transition-colors duration-300 group-hover:bg-secondary group-hover:text-white shrink-0">
+                  <MapPin className="size-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-primary text-base font-bold">Physical Grill Spot</h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-secondary bg-secondary/10 border border-secondary/25 px-2 py-0.5 rounded-full">
+                      Walk-Ins
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-primary/80 mb-2">
+                    Number A1, Minimah Estate, Beside First Bank<br />
+                    Airport Bus Stop, Ikeja, Lagos
+                  </p>
+                  <a 
+                    href="https://maps.google.com/?q=Minimah+Estate,+Airport+Bus+Stop,+Ikeja,+Lagos" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-secondary hover:underline group/link"
+                  >
+                    Get Directions (Airport Bus Stop)
+                    <ArrowUpRight className="size-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
+                </div>
               </div>
-              <div className="flex-1">
-                <h3 className="text-primary text-base font-bold mb-1">Visit us</h3>
-                <p className="text-sm leading-relaxed text-primary/80 mb-2">
-                  20a Michael Akinola str<br />Mangoro, Ikeja, Lagos
-                </p>
-                <a 
-                  href="https://maps.google.com/?q=20a+Michael+Akinola+str,+Mangoro,+Ikeja,+Lagos" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-secondary hover:underline group/link"
-                >
-                  Get Directions
-                  <ArrowUpRight className="size-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                </a>
+
+              {/* Location 2: Central Catering Kitchen */}
+              <div className="flex gap-4 items-start group pt-4 border-t border-border/15">
+                <div className="p-3.5 rounded-2xl bg-secondary/10 border border-secondary/20 text-secondary transition-colors duration-300 group-hover:bg-secondary group-hover:text-white shrink-0">
+                  <MapPin className="size-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-primary text-base font-bold">Central Catering Kitchen</h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-primary/60 bg-primary/5 border border-primary/15 px-2 py-0.5 rounded-full">
+                      Catering Hub
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-primary/80 mb-2">
+                    20a Michael Akinola str<br />Mangoro, Ikeja, Lagos
+                  </p>
+                  <a 
+                    href="https://maps.google.com/?q=20a+Michael+Akinola+str,+Mangoro,+Ikeja,+Lagos" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-secondary hover:underline group/link"
+                  >
+                    Get Directions (Mangoro)
+                    <ArrowUpRight className="size-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
+                </div>
               </div>
             </div>
 

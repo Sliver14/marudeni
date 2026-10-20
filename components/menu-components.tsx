@@ -533,6 +533,8 @@ export function ScrollingGallery() {
   const [activeImage, setActiveImage] = useState<string | null>(null)
 
   const leftImages = [
+    "/spot/storefront.jpg",
+    "/spot/charcoal-chicken.jpg",
     "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM (1).jpeg",
     "/gallery/WhatsApp Image 2026-08-19 at 11.59.57 AM.jpeg",
     "/gallery/WhatsApp Image 2026-08-19 at 12.00.07 PM.jpeg",
@@ -544,6 +546,8 @@ export function ScrollingGallery() {
   ]
 
   const rightImages = [
+    "/spot/chef-wok.jpg",
+    "/spot/banner.jpg",
     "/gallery/WhatsApp Image 2026-08-19 at 12.00.22 PM.jpeg",
     "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (1).jpeg",
     "/gallery/WhatsApp Image 2026-08-19 at 12.00.23 PM (2).jpeg",

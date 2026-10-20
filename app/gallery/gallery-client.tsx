@@ -152,6 +152,56 @@ const galleryItems: GalleryItem[] = [
     title: 'Lekki Wedding Buffet Setup (Vlog)',
     category: 'Videos',
     description: 'A walkthrough of our premium buffet presentation, guest servers, and food setups.'
+  },
+  {
+    id: '18',
+    type: 'video',
+    src: '/spot/charcoal-chicken-grill.mp4',
+    thumbnail: '/spot/charcoal-chicken.jpg',
+    title: 'Live Charcoal BBQ Chicken (Grill Spot)',
+    category: 'Videos',
+    description: 'Juicy, marinated chicken grilled slow over smoking hot coals at our Ikeja Airport Bus Stop grill spot.'
+  },
+  {
+    id: '19',
+    type: 'video',
+    src: '/spot/wok-spaghetti-sizzle.mp4',
+    thumbnail: '/spot/wok-spaghetti.jpg',
+    title: 'Spaghetti Tossed in Live Wok',
+    category: 'Videos',
+    description: 'Watch our signature seasoned spaghetti tossed with fresh bell peppers and savory sausages.'
+  },
+  {
+    id: '20',
+    type: 'image',
+    src: '/spot/storefront.jpg',
+    title: 'Ikeja Physical Grill Spot (Airport Bus Stop)',
+    category: 'BTS',
+    description: 'Number A1, Minimah Estate, Beside First Bank, Airport Bus Stop, Ikeja.'
+  },
+  {
+    id: '21',
+    type: 'image',
+    src: '/spot/charcoal-chicken.jpg',
+    title: 'Flame-Kissed Charcoal Chicken',
+    category: 'Dishes',
+    description: 'Tender chicken drumsticks and wings grilled with authentic spices over open coals.'
+  },
+  {
+    id: '22',
+    type: 'image',
+    src: '/spot/chef-wok.jpg',
+    title: 'Chef Stir-Frying at the Station',
+    category: 'BTS',
+    description: 'Fresh street food prep in our clean Ikeja kitchen station.'
+  },
+  {
+    id: '23',
+    type: 'image',
+    src: '/spot/banner.jpg',
+    title: 'Delicious Spaghetti & Grills Special',
+    category: 'Dishes',
+    description: 'Our physical spot signature plate: rich seasoned spaghetti paired with a seasoned grilled chicken quarter.'
   }
 ]
 

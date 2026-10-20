@@ -12,6 +12,7 @@ export default function CheckoutClient() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [method, setMethod] = useState<'pickup' | 'delivery'>('pickup')
+  const [pickupLocation, setPickupLocation] = useState<'airport' | 'mangoro'>('airport')
   const [address, setAddress] = useState('')
   const [notes, setNotes] = useState('')
   const [orderRef, setOrderRef] = useState('')
@@ -52,7 +53,15 @@ I would like to place an order.
 *Customer Name:* ${name}
 *Phone:* ${phone}
 *Email:* ${email}
-*Method:* ${method === 'pickup' ? 'Pickup (Free)' : 'Delivery (₦2,500)'}
+*Method:* ${
+  method === 'pickup'
+    ? `Pickup (Free) - ${
+        pickupLocation === 'airport'
+          ? 'Airport Bus Stop Grill Spot (Minimah Estate, Ikeja)'
+          : 'Mangoro Kitchen (20a Michael Akinola Str, Ikeja)'
+      }`
+    : 'Delivery (₦2,500)'
+}
 ${method === 'delivery' ? `*Delivery Address:* ${address}` : ''}
 
 *Order Details:*
@@ -195,7 +204,7 @@ I am sending my proof of payment for ${money(total)} next.`
                   <input type="radio" name="method" checked={method === 'pickup'} onChange={() => setMethod('pickup')} className="accent-border" />
                   <div>
                     <p className="text-sm font-semibold text-primary">Pickup</p>
-                    <p className="text-xs text-primary/60">Collect from 20a Michael Akinola str Mangoro, Ikeja, Lagos</p>
+                    <p className="text-xs text-primary/60">Collect from one of our Ikeja locations</p>
                   </div>
                   <span className="ml-auto text-sm text-border font-bold">Free</span>
                 </label>
@@ -208,6 +217,45 @@ I am sending my proof of payment for ${money(total)} next.`
                   <span className="ml-auto text-sm text-border font-bold">₦2,500</span>
                 </label>
               </div>
+
+              {method === 'pickup' && (
+                <div className="pt-2 space-y-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary/70">Select Pickup Location:</p>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <label className={`flex items-start gap-3 rounded-xl border p-3.5 cursor-pointer transition-all ${pickupLocation === 'airport' ? 'border-border bg-secondary/40 ring-1 ring-border' : 'border-border/25 bg-background'}`}>
+                      <input
+                        type="radio"
+                        name="pickupLocation"
+                        checked={pickupLocation === 'airport'}
+                        onChange={() => setPickupLocation('airport')}
+                        className="accent-border mt-1"
+                      />
+                      <div>
+                        <p className="text-xs font-bold text-primary">Airport Bus Stop (Grill Spot)</p>
+                        <p className="text-[11px] text-primary/75 leading-relaxed mt-0.5">
+                          Number A1, Minimah Estate, Beside First Bank, Ikeja
+                        </p>
+                      </div>
+                    </label>
+
+                    <label className={`flex items-start gap-3 rounded-xl border p-3.5 cursor-pointer transition-all ${pickupLocation === 'mangoro' ? 'border-border bg-secondary/40 ring-1 ring-border' : 'border-border/25 bg-background'}`}>
+                      <input
+                        type="radio"
+                        name="pickupLocation"
+                        checked={pickupLocation === 'mangoro'}
+                        onChange={() => setPickupLocation('mangoro')}
+                        className="accent-border mt-1"
+                      />
+                      <div>
+                        <p className="text-xs font-bold text-primary">Mangoro Kitchen (Central Hub)</p>
+                        <p className="text-[11px] text-primary/75 leading-relaxed mt-0.5">
+                          20a Michael Akinola str, Mangoro, Ikeja
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              )}
               {method === 'delivery' && (
                 <textarea required placeholder="Delivery Address (Street, City, State)" value={address} onChange={(e) => setAddress(e.target.value)} className="w-full min-h-24 rounded-xl border border-border/40 bg-background px-4 py-3 text-sm focus:outline-none focus:border-border text-primary font-medium" />
               )}

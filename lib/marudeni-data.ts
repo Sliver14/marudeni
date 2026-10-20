@@ -14,9 +14,12 @@ export const menuItems: MenuItem[] = [
   { id: 'whitericesteew', name: 'White Rice & Beef Stew', category: 'Rice Dishes', description: 'Fluffy steamed parboiled white rice served with a classic, rich tomato and red pepper stew featuring seasoned cuts of tender beef.', price: 7500, image: '/menu/98f42e76c47a2916103843af27e21743.png', tags: ['Popular'] },
   { id: 'ricebeans', name: 'White Rice & Beans with Beef Stew', category: 'Rice Dishes', description: 'Perfectly cooked white rice paired with tender black-eyed beans, served with our signature slow-simmered tomato beef stew.', price: 8000, image: '/menu/a98d4a5bc4a43da2b0461827e3901e7e.png', tags: [] },
   { id: 'obeata', name: 'Obe Ata (Pepper / Chili Sauce)', category: 'Sides & Small Plates', description: 'A side container of our signature fiery, slow-cooked red pepper and onion stew base, simmered in palm oil with Nigerian spices.', price: 3000, image: '/menu/da43223cb72a916ab5bfb132d10c5e8b.png', tags: ['Spicy'] },
+  { id: 'spaghetti-grills', name: 'Signature Spaghetti & Grilled Chicken Combo', category: 'Spaghetti & Grills', description: 'Our physical spot special: perfectly seasoned stir-fried spaghetti tossed in savory sauce, served with a flame-kissed seasoned grilled chicken quarter.', price: 6500, image: '/spot/banner.jpg', tags: ['Signature', 'Popular', 'Spicy'] },
+  { id: 'charcoal-chicken', name: 'Quarter Flame-Grilled Charcoal Chicken', category: 'Spaghetti & Grills', description: 'Juicy, marinated chicken quarter slow-grilled over smoking hot coals with authentic spices and smoky glaze.', price: 4500, image: '/spot/charcoal-chicken.jpg', tags: ['Popular'] },
+  { id: 'wok-spaghetti', name: 'Live Wok-Tossed Jollof Spaghetti', category: 'Spaghetti & Grills', description: 'Generous serving of wok-fried pasta tossed with fresh sweet peppers, carrots, sausage, and rich Nigerian spices.', price: 3500, image: '/spot/wok-spaghetti.jpg', tags: ['Signature'] },
 ]
 
-export const defaultCategories = ['Rice Dishes', 'Soups & Stews', 'Sides & Small Plates', 'Sweet Things']
+export const defaultCategories = ['Spaghetti & Grills', 'Rice Dishes', 'Soups & Stews', 'Sides & Small Plates', 'Sweet Things']
 
 export const getStoredMenu = (): MenuItem[] => {
   if (typeof window === 'undefined') return menuItems
@@ -27,7 +30,16 @@ export const getStoredMenu = (): MenuItem[] => {
   }
   try {
     const parsed = JSON.parse(stored)
-    return Array.isArray(parsed) ? parsed : menuItems
+    if (Array.isArray(parsed)) {
+      const missing = menuItems.filter((mi) => !parsed.some((p: any) => p.id === mi.id))
+      if (missing.length > 0) {
+        const merged = [...missing, ...parsed]
+        window.localStorage.setItem('marudeni-menu', JSON.stringify(merged))
+        return merged
+      }
+      return parsed
+    }
+    return menuItems
   } catch (e) {
     return menuItems
   }
@@ -49,7 +61,16 @@ export const getStoredCategories = (): string[] => {
   }
   try {
     const parsed = JSON.parse(stored)
-    return Array.isArray(parsed) ? parsed : defaultCategories
+    if (Array.isArray(parsed)) {
+      const missing = defaultCategories.filter((c) => !parsed.includes(c))
+      if (missing.length > 0) {
+        const merged = [...missing, ...parsed]
+        window.localStorage.setItem('marudeni-categories', JSON.stringify(merged))
+        return merged
+      }
+      return parsed
+    }
+    return defaultCategories
   } catch (e) {
     return defaultCategories
   }
@@ -82,12 +103,12 @@ export async function syncWithDatabase() {
     const res = await fetch('/api/categories')
     if (res.ok) {
       const cats = await res.json()
-      saveStoredCategories(cats.map((c: any) => c.name))
+      saveStoredCategories(cats.map((c: any) => c.name));
     }
-    (window as any).__menuSyncStatus = 'success'
+    (window as any).__menuSyncStatus = 'success';
   } catch (e) {
-    console.error('Failed to sync categories with Neon DB:', e)
-    (window as any).__menuSyncStatus = 'success'
+    console.error('Failed to sync categories with Neon DB:', e);
+    (window as any).__menuSyncStatus = 'success';
   } finally {
     if ((window as any).__menuSyncStatus !== 'success') {
       (window as any).__menuSyncStatus = 'error'

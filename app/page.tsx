@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import type { Metadata } from 'next'
 import { FeaturedMenu, ScrollingGallery } from '@/components/menu-components'
+import { GrillSpotSection } from '@/components/grill-spot-section'
 
 export const metadata: Metadata = {
   title: 'Marudeni Foods — Premium Nigerian Delicacies & Catering',
@@ -79,7 +80,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="size-5 text-border" />
-                <span className="text-xs sm:text-sm font-semibold text-white/80">Mangoro, Ikeja, Lagos</span>
+                <span className="text-xs sm:text-sm font-semibold text-white/80">Airport Bus Stop, Ikeja</span>
               </div>
               <div className="flex items-center gap-2">
                 <Star className="size-5 text-border fill-border" />
@@ -197,6 +198,9 @@ export default function HomePage() {
           <FeaturedMenu />
         </div>
       </section>
+
+      {/* PHYSICAL GRILL SPOT SHOWCASE */}
+      <GrillSpotSection />
 
       {/* FOOD EXPERIENCE - EDITORIAL STORY */}
       <section className="bg-background py-20 px-5 lg:px-8 border-b border-border/10">
